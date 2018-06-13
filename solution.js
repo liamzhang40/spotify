@@ -55,11 +55,12 @@ function changePossibilities(amount, denominations) {
       count += 1;
       return;
     }
-    if (amount < 0) return;
 
     for (let i = currentIndex; i < denominations.length; i++) {
-      amount -= denominations[i];
-      _makeChange(amount, i);
+      if (amount >= denominations[i]) {
+        const newAmount = amount - denominations[i];
+        _makeChange(newAmount, i);
+      }
     }
   }
 
